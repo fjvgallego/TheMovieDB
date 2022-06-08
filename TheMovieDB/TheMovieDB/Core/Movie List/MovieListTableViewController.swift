@@ -10,7 +10,7 @@ import UIKit
 
 class MovieListTableViewController: UITableViewController {
     
-    let movies = ["Movie 1", "Movie 2", "Movie 3"]
+    let movies: [Movie] = Movie.exampleMovies
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +22,8 @@ class MovieListTableViewController: UITableViewController {
     
     @IBSegueAction func seeMovieDetail(_ coder: NSCoder) -> UIViewController? {
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            let movieTitle = movies[selectedIndexPath.row]
-            return MovieDetailViewController(coder: coder, movieTitle: movieTitle)
+            let movie = movies[selectedIndexPath.row]
+            return MovieDetailViewController(coder: coder, movie: movie)
         }
         
         return nil
@@ -41,8 +41,9 @@ class MovieListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
-        cell.textLabel?.text = movies[indexPath.row]
-        cell.detailTextLabel?.text = "2022"
+        let movieForCell = movies[indexPath.row]
+        cell.textLabel?.text = movieForCell.title
+        cell.detailTextLabel?.text = "\(movieForCell.year)"
         return cell
     }
 }
