@@ -25,6 +25,9 @@ class MoviesViewController: UIViewController {
         super.viewDidLoad()
 
         moviesTableView.dataSource = self
+        moviesTableView.delegate = self
+        moviesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        
         movieSearchBar.delegate = self
         
         loadMovies()
@@ -85,11 +88,16 @@ extension MoviesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as! MovieTableViewCell
         let movieForCell = movies[indexPath.row]
-        cell.textLabel?.text = movieForCell.title
-        cell.detailTextLabel?.text = movieForCell.releaseDate
+        cell.configure(with: movieForCell)
         return cell
+    }
+}
+
+extension MoviesViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
     }
 }
 

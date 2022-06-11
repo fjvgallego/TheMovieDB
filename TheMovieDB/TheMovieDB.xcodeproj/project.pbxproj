@@ -22,6 +22,7 @@
 		099CE5D72850C41500D1C978 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 099CE5D62850C41500D1C978 /* Assets.xcassets */; };
 		099CE5DA2850C41500D1C978 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 099CE5D82850C41500D1C978 /* LaunchScreen.storyboard */; };
 		09BB8B172853468700283844 /* MovieFetchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BB8B162853468700283844 /* MovieFetchTests.swift */; };
+		09BB8B1B2853DDBE00283844 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BB8B1A2853DDBE00283844 /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		099CE5DB2850C41500D1C978 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09BB8B0D2853461800283844 /* TheMovieDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TheMovieDBTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09BB8B162853468700283844 /* MovieFetchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieFetchTests.swift; sourceTree = "<group>"; };
+		09BB8B1A2853DDBE00283844 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +96,7 @@
 		096679BB2850DED7003DF4DA /* Movie List */ = {
 			isa = PBXGroup;
 			children = (
+				09BB8B1A2853DDBE00283844 /* MovieTableViewCell.swift */,
 				096679C22851C82B003DF4DA /* MoviesViewController.swift */,
 			);
 			path = "Movie List";
@@ -297,6 +300,7 @@
 			files = (
 				096679BF2850F932003DF4DA /* MovieAPICaller.swift in Sources */,
 				096679B62850C9D8003DF4DA /* MovieDetailViewController.swift in Sources */,
+				09BB8B1B2853DDBE00283844 /* MovieTableViewCell.swift in Sources */,
 				099CE5CE2850C41400D1C978 /* AppDelegate.swift in Sources */,
 				099CE5D02850C41400D1C978 /* SceneDelegate.swift in Sources */,
 				096679D52852297C003DF4DA /* QueryFetcher.swift in Sources */,

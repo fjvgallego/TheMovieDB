@@ -18,7 +18,7 @@ class MovieDetailViewController: UIViewController {
     @IBOutlet weak var voteAverageLabel: UILabel!
     
     @IBOutlet weak var movieTitleLabel: UILabel!
-    @IBOutlet weak var movieDescriptionLabel: UILabel!
+    @IBOutlet weak var movieOverviewLabel: UILabel!
     
     // MARK: - Variables -
     
@@ -53,7 +53,7 @@ class MovieDetailViewController: UIViewController {
         movieTitleLabel.text = movie.title
         voteAverageLabel.text = "\(movie.voteAverage)"
         
-        movieDescriptionLabel.text = movie.overview
+        movieOverviewLabel.text = movie.overview
     }
     
     private func manageImageActivityIndicator(isHidden: Bool) {
