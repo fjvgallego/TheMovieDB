@@ -40,6 +40,7 @@ class MoviesViewController: UIViewController {
     
     // MARK: - UI Methods -
     
+    /// Initializes the starting state of the UI.
     private func setUpUI() {
         moviesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         
@@ -52,6 +53,7 @@ class MoviesViewController: UIViewController {
         canLoadMoreMovies = false
     }
     
+    /// Maps the results collection to get a whole list of requested movies.
     private func getMoviesFromResults() -> [Movie] {
         var movies = [Movie]()
         for result in results {
@@ -60,6 +62,8 @@ class MoviesViewController: UIViewController {
         return movies
     }
     
+    /// Loads a list of movies in a given page.
+    /// paginated: if true, a higher page is requested every time. If false, the first page is requested.
     private func loadMovies(paginated: Bool = false) {
         // When loading more movies, the user can't load any more until he sees the new fetched ones.
         canLoadMoreMovies = false
@@ -95,6 +99,8 @@ class MoviesViewController: UIViewController {
         }
     }
     
+    /// Reloads the table view data with some animation.
+    /// newResult: the new movies to represent in the table view.
     private func reloadTableViewData(with newResult: MoviesResult) {
         let currentNumberOfRows = self.movies.count
         results.append(newResult)
@@ -106,6 +112,8 @@ class MoviesViewController: UIViewController {
         moviesTableView.insertRows(at: indexPaths, with: .automatic)
     }
     
+    ///  Handles de loading view visibility:
+    ///  isLoading: if true, the view is shown. If false, it's hidden.
     private func manageLoadingContainerView(isLoading: Bool) {
         // Hidden when not loading anything.
         loadingContainerView.isHidden = !isLoading
@@ -118,6 +126,8 @@ class MoviesViewController: UIViewController {
     
     // MARK: - Supporting Methods -
     
+    /// Show a custom alert, depending on the error:
+    /// error: the error to represent in the alert.
     private func handleMovieFetchError(_ error: Error) {
         let alertTitle = "Error"
         var alertMessage = ""
@@ -131,12 +141,16 @@ class MoviesViewController: UIViewController {
         showAlert(withTitle: alertTitle, message: alertMessage)
     }
     
+    /// Show an alert:
+    /// title: the alert title.
+    /// message: the alert message.
     private func showAlert(withTitle title: String?, message: String?) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .cancel))
         self.present(alertController, animated: true)
     }
     
+    /// Gets the maximum requested movies page.
     private func getMaxPageFromResults() -> Int? {
         var maxPage: Int?
         for result in results {

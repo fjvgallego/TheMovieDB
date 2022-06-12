@@ -14,7 +14,11 @@ class MovieAPICaller {
     private let baseAPIStringURL = "https://api.themoviedb.org/3?api_key=\(Constants.kAPIKey)"
     private var searchURL: String { "\(baseAPIStringURL)/search/movie" }
     
-    func fetchMovies(withQuery query: String, page: Int = 1, completion: @escaping (Result<MoviesResult, Error>) -> Void) {
+    /// Fetch a movies result (conformed by a page and movies list):
+    /// - query: text that the user enters to search any movies.
+    /// - page: the page where to look for movies. This allows pagination. By default, the first page is the lowest admitted by the API.
+    /// - completion: if succeeds, returns a MoviesResult object, with the list of movies. Otherwise, returns an error.
+    func fetchMovies(withQuery query: String, page: Int = Constants.kAPIMoviePagesRange.lowerBound, completion: @escaping (Result<MoviesResult, Error>) -> Void) {
         // In the query, spaces must be replaced with %20. Otherwise, the query will fail.
         let formattedQuery = query.replacingOccurrences(of: " ", with: "%20")
         

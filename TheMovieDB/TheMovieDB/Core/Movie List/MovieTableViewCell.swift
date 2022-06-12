@@ -34,6 +34,7 @@ class MovieTableViewCell: UITableViewCell {
     
     // MARK: - UI Methods -
     
+    /// Sets up the cell UI style.
     private func setCellBaseShape() {
         cellBaseView.layer.masksToBounds = false
         cellBaseView.clipsToBounds = false
@@ -45,6 +46,8 @@ class MovieTableViewCell: UITableViewCell {
         cellBaseView.layer.shadowRadius = 5
     }
     
+    /// Updates the whole cell UI.
+    /// movie: the movie to represent in the cell.
     func configure(with movie: Movie) {
         // Movie image.
         if let imagePath = movie.posterPath {
@@ -56,11 +59,14 @@ class MovieTableViewCell: UITableViewCell {
         // Movie info.
         movieTitle.text = movie.title
         movieOverview.text = movie.overview
+        movieVoteAverageLabel.text = "\(movie.voteAverage)"
         
         // Movie vote average.
-        updateUI(forVoteAvg: movie.voteAverage)
+        updateMovieVoteView(forVoteAvg: movie.voteAverage)
     }
     
+    /// Fetch the movie image in background and update it in view.
+    /// imagePath: the movie image path to request that image.
     private func updateUI(forImagePath imagePath: String) {
         DispatchQueue.global(qos: .userInteractive).async { [weak self] in
             guard let self = self else { return }
@@ -81,9 +87,10 @@ class MovieTableViewCell: UITableViewCell {
         }
     }
     
-    private func updateUI(forVoteAvg voteAvg: Double) {
+    /// Update the movie rating given its vote average:
+    /// voteAvg: the movie vote average.
+    private func updateMovieVoteView(forVoteAvg voteAvg: Double) {
         // Vote quantity.
-        movieVoteAverageLabel.text = "\(voteAvg)"
         movieVoteAverageLabel.textColor = .white
         
         // Vote symbol (star).
@@ -94,6 +101,8 @@ class MovieTableViewCell: UITableViewCell {
         movieVoteAverageView.backgroundColor = getColor(for: voteAvg)
     }
     
+    /// Returns the appropriate color for a given vote average:
+    /// voteAvg: the movie vote average.
     private func getColor(for voteAvg: Double) -> UIColor {
         switch voteAvg {
         case 0..<4: return .systemRed

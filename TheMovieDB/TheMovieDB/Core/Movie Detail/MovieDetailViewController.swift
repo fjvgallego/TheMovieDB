@@ -49,6 +49,7 @@ class MovieDetailViewController: UIViewController {
     
     // MARK: - UI Methods -
     
+    /// Initializes the starting state of the UI.
     private func setUpUI() {
         setHeaderViewBase()
         
@@ -63,6 +64,7 @@ class MovieDetailViewController: UIViewController {
         movieOverviewLabel.text = movie.overview
     }
     
+    /// Sets up the header view style.
     private func setHeaderViewBase() {
         headerView.layer.masksToBounds = false
         headerView.clipsToBounds = false
@@ -72,6 +74,8 @@ class MovieDetailViewController: UIViewController {
         headerView.layer.shadowColor = UIColor.gray.cgColor
     }
     
+    /// Handles the activity indicator visibility and motion.
+    /// isHidden: if true, stops the animation and hides the indicator. If false, starts the animation and shows up the indicator.
     private func manageImageActivityIndicator(isHidden: Bool) {
         imageActivityIndicator.isHidden = isHidden
         if isHidden {
@@ -81,6 +85,7 @@ class MovieDetailViewController: UIViewController {
         }
     }
     
+    /// Fetches de movie image and updates it in the UI.
     private func loadMovieImage() {
         // Check if the movie owns a poster path.
         if let posterPath = movie.posterPath {

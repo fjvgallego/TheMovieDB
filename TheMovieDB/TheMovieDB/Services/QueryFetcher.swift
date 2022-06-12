@@ -9,6 +9,9 @@
 import Foundation
 
 struct QueryFetcher {
+    /// Requests any kind of data, and if it succeeds it returns it to be decoded. If it fails, it returns an error.
+    /// queryStringURL: the url in string format where to request it.
+    /// completion: if it succeeds, it returns de raw data. If it fails, an error is returned.
     static func fetchData(fromURL queryStringURL: String, completion: @escaping (Result<Data, Error>) -> Void) {
         // Check if the query URL exists.
         guard let queryURL = URL(string: queryStringURL) else {
