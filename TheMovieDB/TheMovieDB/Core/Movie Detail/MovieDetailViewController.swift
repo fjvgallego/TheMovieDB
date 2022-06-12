@@ -10,11 +10,15 @@ import UIKit
 
 class MovieDetailViewController: UIViewController {
 
-    // MARK: Outlets
+    // MARK: - Outlets -
+    
+    @IBOutlet weak var headerView: UIView!
     
     @IBOutlet weak var movieImage: UIImageView!
     @IBOutlet weak var imageActivityIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var movieReleaseDateLabel: UILabel!
+    @IBOutlet weak var adultContentLabel: UILabel!
     @IBOutlet weak var voteAverageLabel: UILabel!
     
     @IBOutlet weak var movieTitleLabel: UILabel!
@@ -46,14 +50,26 @@ class MovieDetailViewController: UIViewController {
     // MARK: - UI Methods -
     
     private func setUpUI() {
+        setHeaderViewBase()
+        
         loadMovieImage()
 
         imageActivityIndicator.hidesWhenStopped = true
         
         movieTitleLabel.text = movie.title
+        movieReleaseDateLabel.text = movie.releaseDate ?? "NaN"
+        adultContentLabel.text = movie.adultContent ? "Yes" : "No"
         voteAverageLabel.text = "\(movie.voteAverage)"
-        
         movieOverviewLabel.text = movie.overview
+    }
+    
+    private func setHeaderViewBase() {
+        headerView.layer.masksToBounds = false
+        headerView.clipsToBounds = false
+        headerView.layer.shadowRadius = 2
+        headerView.layer.shadowOpacity = 0.7
+        headerView.layer.shadowOffset = CGSize(width: 0, height: 6)
+        headerView.layer.shadowColor = UIColor.gray.cgColor
     }
     
     private func manageImageActivityIndicator(isHidden: Bool) {

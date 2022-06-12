@@ -12,19 +12,20 @@ struct Movie {
     let id: Int
     let title: String
     let overview: String
+    let adultContent: Bool
     let voteAverage: Double
     let posterPath: String?
     let releaseDate: String?
     
     static let exampleMovies = [
         Movie(id: 1, title: "A Space Odyssey",
-              overview: "The greatest film ever made began with the meeting of two brilliant minds: Stanley Kubrick and sci-fi seer Arthur C Clarke.",
+              overview: "The greatest film ever made began with the meeting of two brilliant minds: Stanley Kubrick and sci-fi seer Arthur C Clarke.", adultContent: false,
               voteAverage: 4.8, posterPath: "", releaseDate: "1968-10-17"),
         Movie(id: 2, title: "The Godfather",
-              overview: "From the wise guys of Goodfellas to The Sopranos, all crime dynasties that came after The Godfather are descendants of the Corleones: Francis Ford Coppola’s magnum opus is the ultimate patriarch of the Mafia genre.",
+              overview: "From the wise guys of Goodfellas to The Sopranos, all crime dynasties that came after The Godfather are descendants of the Corleones: Francis Ford Coppola’s magnum opus is the ultimate patriarch of the Mafia genre.", adultContent: true,
               voteAverage: 5, posterPath: "", releaseDate: "1972-10-20"),
         Movie(id: 3, title: "Citizen Kane",
-              overview: "Citizen Kane always finds a way to renew itself for a new generation of film lovers.",
+              overview: "Citizen Kane always finds a way to renew itself for a new generation of film lovers.", adultContent: true,
               voteAverage: 4.4, posterPath: "", releaseDate: "1941-2-11")
     ]
 }
@@ -36,6 +37,7 @@ extension Movie: Codable {
         case id
         case title
         case overview
+        case adultContent = "adult"
         case voteAverage = "vote_average"
         case posterPath = "poster_path"
         case releaseDate = "release_date"
@@ -47,6 +49,7 @@ extension Movie: Codable {
         self.id = try container.decode(Int.self, forKey: .id)
         self.title = try container.decode(String.self, forKey: .title)
         self.overview = try container.decode(String.self, forKey: .overview)
+        self.adultContent = try container.decode(Bool.self, forKey: .adultContent)
         self.voteAverage = try container.decode(Double.self, forKey: .voteAverage)
         self.posterPath = try? container.decode(String.self, forKey: .posterPath)
         self.releaseDate = try? container.decode(String.self, forKey: .releaseDate)

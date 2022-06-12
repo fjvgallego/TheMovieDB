@@ -12,9 +12,10 @@ struct ImageAPICaller {
     static let shared = ImageAPICaller()
     
     private let baseAPIStringURL = "https://image.tmdb.org/t/p"
+    private let imageSizeURLComponent = "/w500"
     
     func fetchImage(withPath imagePath: String, completion: @escaping (Result<Data, Error>) -> Void) {
-        let imageQueryStringURL = "\(baseAPIStringURL)/w500\(imagePath)"
+        let imageQueryStringURL = "\(baseAPIStringURL)\(imageSizeURLComponent)\(imagePath)"
         
         QueryFetcher.fetchData(fromURL: imageQueryStringURL) { result in
             completion(result)
