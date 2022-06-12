@@ -10,5 +10,6 @@ import Foundation
 
 struct Constants {
     static let kAPIKey = "c7cfb7c1e2c552799c43d22a64662a18"
+    static let kAPIMoviePagesRange = 1...1000
     static let kDefaultMovieImageName = "default_image"
 }

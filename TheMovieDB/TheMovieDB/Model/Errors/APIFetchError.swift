@@ -11,13 +11,17 @@ import Foundation
 enum APIFetchError: Error {
     case invalidURL(url: String)
     case badResponse
-    case noData
+    case dataNotFound
+    case queryError
+    case emptyData
     
     var description: String {
         switch self {
         case .invalidURL(let url): return "The provided URL is invalid: \(url)"
-        case .badResponse: return "Bad response."
-        case .noData: return "Couldn't fetch any data."
+        case .badResponse: return "Couldn't connect to server."
+        case .dataNotFound: return "Couldn't fetch any data."
+        case .queryError: return "Search text can't be empty."
+        case .emptyData: return "No results found."
         }
     }
 }

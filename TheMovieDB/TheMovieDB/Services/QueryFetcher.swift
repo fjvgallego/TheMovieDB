@@ -35,7 +35,7 @@ struct QueryFetcher {
             if let data = data {
                 completion(.success(data))
             } else {
-                completion(.failure(APIFetchError.noData))
+                completion(.failure(APIFetchError.dataNotFound))
             }
         }
         

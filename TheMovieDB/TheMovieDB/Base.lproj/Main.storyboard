@@ -12,7 +12,6 @@
         <!--Movies-->
         <scene sceneID="6Sj-6g-pNg">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qDF-Z1-KPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="Qjr-H9-ujJ" customClass="MoviesViewController" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G1D-ua-1us">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
@@ -122,25 +121,53 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="twP-b8-tTd">
+                                <rect key="frame" x="95" y="175" width="130" height="130"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="l8i-e8-3Dk">
+                                        <rect key="frame" x="55" y="35" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="27c-mZ-bYZ">
+                                        <rect key="frame" x="33.5" y="71.5" width="63.5" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" systemColor="systemGrayColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGray5Color"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="130" id="2Va-ew-ic9"/>
+                                    <constraint firstItem="l8i-e8-3Dk" firstAttribute="centerX" secondItem="twP-b8-tTd" secondAttribute="centerX" id="83N-9p-g25"/>
+                                    <constraint firstItem="27c-mZ-bYZ" firstAttribute="centerY" secondItem="twP-b8-tTd" secondAttribute="centerY" constant="15" id="KVu-qj-QHF"/>
+                                    <constraint firstItem="l8i-e8-3Dk" firstAttribute="centerY" secondItem="twP-b8-tTd" secondAttribute="centerY" constant="-20" id="TXh-Ry-ddg"/>
+                                    <constraint firstItem="27c-mZ-bYZ" firstAttribute="centerX" secondItem="twP-b8-tTd" secondAttribute="centerX" id="nRQ-ML-4ro"/>
+                                    <constraint firstAttribute="width" constant="130" id="taY-x6-3OK"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SmO-xh-Jtd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="SmO-xh-Jtd" firstAttribute="trailing" secondItem="qwk-HI-YbM" secondAttribute="trailing" id="22z-L4-auB"/>
+                            <constraint firstItem="twP-b8-tTd" firstAttribute="centerX" secondItem="G1D-ua-1us" secondAttribute="centerX" id="3dW-mI-IyE"/>
                             <constraint firstItem="BsS-aw-lXT" firstAttribute="trailing" secondItem="SmO-xh-Jtd" secondAttribute="trailing" id="HQn-iA-thm"/>
                             <constraint firstItem="qwk-HI-YbM" firstAttribute="leading" secondItem="SmO-xh-Jtd" secondAttribute="leading" id="Hfy-BK-oP9"/>
-                            <constraint firstItem="SmO-xh-Jtd" firstAttribute="bottom" secondItem="qwk-HI-YbM" secondAttribute="bottom" id="Jxy-ai-BcG"/>
+                            <constraint firstItem="twP-b8-tTd" firstAttribute="centerY" secondItem="G1D-ua-1us" secondAttribute="centerY" id="YOL-Fw-teP"/>
                             <constraint firstItem="BsS-aw-lXT" firstAttribute="leading" secondItem="SmO-xh-Jtd" secondAttribute="leading" id="fYb-NT-Qf1"/>
                             <constraint firstItem="BsS-aw-lXT" firstAttribute="top" secondItem="SmO-xh-Jtd" secondAttribute="top" id="hrh-oo-4wD"/>
+                            <constraint firstItem="SmO-xh-Jtd" firstAttribute="bottom" secondItem="qwk-HI-YbM" secondAttribute="bottom" id="ki4-bu-t8C"/>
                             <constraint firstItem="qwk-HI-YbM" firstAttribute="top" secondItem="BsS-aw-lXT" secondAttribute="bottom" id="ksX-Sk-idy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="DPT-38-mLO"/>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="l8i-e8-3Dk" id="bCR-PJ-ZSV"/>
+                        <outlet property="loadingContainerView" destination="twP-b8-tTd" id="tWn-Bd-4pf"/>
                         <outlet property="movieSearchBar" destination="BsS-aw-lXT" id="9l3-6e-RRb"/>
                         <outlet property="moviesTableView" destination="qwk-HI-YbM" id="ala-F3-ThR"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qDF-Z1-KPa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="691.875" y="147.5"/>
         </scene>
@@ -260,6 +287,12 @@
         <image name="star.fill" catalog="system" width="128" height="116"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGrayColor">
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
