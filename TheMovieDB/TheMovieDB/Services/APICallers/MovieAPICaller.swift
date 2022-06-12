@@ -11,11 +11,8 @@ import Foundation
 class MovieAPICaller {
     static let shared = MovieAPICaller()
     
-    private let baseAPIStringURL = "https://api.themoviedb.org/3"
-    
+    private let baseAPIStringURL = "https://api.themoviedb.org/3?api_key=\(Constants.kAPIKey)"
     private var searchURL: String { "\(baseAPIStringURL)/search/movie" }
-    
-    private let urlComponents = URLComponents()
     
     func fetchMovies(withQuery query: String, page: Int = 1, completion: @escaping (Result<MoviesResult, Error>) -> Void) {
         // In the query, spaces must be replaced with %20. Otherwise, the query will fail.
@@ -27,7 +24,7 @@ class MovieAPICaller {
             return
         }
         
-        let searchQueryStringURL = "\(searchURL)?api_key=\(Constants.kAPIKey)&page=\(page)&query=\(formattedQuery)"
+        let searchQueryStringURL = "\(searchURL)&page=\(page)&query=\(formattedQuery)"
         
         // Start fetching the movies data, then parse it if there's no errors.
         QueryFetcher.fetchData(fromURL: searchQueryStringURL) { result in
