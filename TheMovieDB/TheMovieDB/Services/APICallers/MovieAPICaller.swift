@@ -11,8 +11,8 @@ import Foundation
 class MovieAPICaller {
     static let shared = MovieAPICaller()
     
-    private let baseAPIStringURL = "https://api.themoviedb.org/3?api_key=\(Constants.kAPIKey)"
-    private var searchURL: String { "\(baseAPIStringURL)/search/movie" }
+    private let baseAPIStringURL = "https://api.themoviedb.org/3"
+    private var searchURL: String { "\(baseAPIStringURL)/search/movie?api_key=\(Constants.kAPIKey)" }
     
     /// Fetch a movies result (conformed by a page and movies list):
     /// - query: text that the user enters to search any movies.
